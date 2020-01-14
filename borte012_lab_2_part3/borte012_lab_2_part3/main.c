@@ -46,7 +46,7 @@ int main(void)
 		if(space3 == 0x08){
 			taken = taken + 1;
 		}
-		if (cntavai == taken){
+		if (taken == 4){
 			cntavai = 0x80;
 		}
 		cntavai = cntavai - taken;

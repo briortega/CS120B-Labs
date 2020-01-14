@@ -24,7 +24,7 @@ int main(void)
     {
 		tmpA0 = PINA & 0x01;
 		tmpA1 = PINA & 0x02;
-		if ((tmpA1 == 0x01) && (tmpA0 == 0x02)){
+		if (!(tmpA1 == 0x02) && (tmpA0 == 0x01)){
 			PORTB = 0x01;
 		}
 		else{
