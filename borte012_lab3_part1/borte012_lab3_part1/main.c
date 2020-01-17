@@ -4,7 +4,7 @@
  * Partner 1 Name & E-mail:
  * Lab Section:021
  * Assignment: Lab #3 Exercise #1
- * Exercise Description: Available spaces to full/none available PC7 if full
+ * Exercise Description:
  *
  * I acknowledge all content contained herein, excluding template or example
  * code, is my own original work.
