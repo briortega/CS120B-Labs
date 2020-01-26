@@ -76,7 +76,11 @@ void LockSystem_Tick(){
 			}
 			break;
 		case Lock:
-			LockSystem_States = Lock;
+			if (button_A7){
+				LockSystem_States = Lock;
+			}else{
+				LockSystem_States = Restart;
+			}
 			break;
 		case  Unlock:
 			if (button_A7){

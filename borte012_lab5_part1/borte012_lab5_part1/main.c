@@ -1,9 +1,9 @@
 /*
- * borte012_lab3_part3.c
+ * borte012_lab5_part1.c
  * Author : Briana
- * Partner 1 Name & E-mail:
+ * Partner 1 Name & E-mail: Vince
  * Lab Section:021
- * Assignment: Lab #3 Exercise #3
+ * Assignment: Lab #5 Exercise #1
  * Exercise Description:
  *
  * I acknowledge all content contained herein, excluding template or example
@@ -48,19 +48,11 @@ int main(void)
 		
 		tempC = PORTC;
 		
-		if (tempValue < 4){
+		if (tempValue <= 4){
 			PORTC = (tempC | 0x40);
 		}
 		
 		tempC = PORTC;
-		
-		if(GetBit(PINA,4)){
-			if(GetBit(PINA,5)){
-				if(!(GetBit(PINA,6))){
-					PORTC = tempC | 0x80;
-				}
-			}
-		}
 	}
 }
 
