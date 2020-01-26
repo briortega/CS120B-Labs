@@ -25,8 +25,10 @@ int main(void)
 	
     while (1) 
     {
-		tempValue = ~PINA & 0x0F;
-		
+		tempValue = ~PINA & 0x0F;	
+		if(tempValue == 0){
+			PORTC = 0x00;
+		}
 		if((tempValue == 1) || (tempValue == 2)){
 			PORTC = 0x20;
 		}
@@ -51,8 +53,7 @@ int main(void)
 		if (tempValue <= 4){
 			PORTC = (tempC | 0x40);
 		}
-		
-		tempC = PORTC;
+
 	}
 }
 
