@@ -1,7 +1,7 @@
 /*
  * borte012_lab5_part1.c
  * Author : Briana
- * Partner 1 Name & E-mail: Vince
+ * Partner 1 Name & E-mail: Vincent Trejo vtrej003@ucr.edu
  * Lab Section:021
  * Assignment: Lab #5 Exercise #1
  * Exercise Description:

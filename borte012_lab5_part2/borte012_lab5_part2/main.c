@@ -1,7 +1,7 @@
 /*
 * borte012_lab5_part2.c
 * Author : Briana
-* Partner 1 Name & E-mail: Vince
+* Partner 1 Name & E-mail: Vincent Trejo vtrej003@ucr.edu
 * Lab Section:021
 * Assignment: Lab #5 Exercise #2
 * Exercise Description:
@@ -26,32 +26,42 @@ void Counter_Tick(){
 			Counter_States = wait;
 			break;
 		case wait:
-			if(button_A0 && button_A1){
-				Counter_States = Count_Reset;
-			}else if(button_A0 && !button_A1){
+			if ((!button_A0) && (!button_A1)){
+				Counter_States = wait;
+			}
+			else if((button_A0) && (button_A1)){
+				Counter_States = wait2;
+			}else if((button_A0) && (!button_A1)){
 				Counter_States = Count_Up;
-			}else if (!button_A0 && button_A1){
+			}else if ((!button_A0) && (button_A1)){
 				Counter_States = Count_Down;
 			}
 			break;
 		case Count_Up:
-			if(button_A0 && !button_A1){
+			if((button_A0) && (!button_A1)){
 				Counter_States = wait2;
+			}
+			else if ((button_A0) && (button_A1)){
+				Counter_States = Count_Reset;
 			}
 			break;
 		case Count_Down:
-			if(!button_A0 && button_A1){
+			if((!button_A0) && (button_A1)){
 				Counter_States = wait2;
+			}else if ((button_A0) && (button_A1)){
+				Counter_States = Count_Reset;
 			}
 			break;
 		case Count_Reset:
-			Counter_States = wait;
+				Counter_States =  Counter_SMStart;
 			break;
 		case wait2:
-			if(button_A0 || button_A1){
+			if((button_A0) || (button_A1)){
 				Counter_States = wait2;
-			}else if (!button_A0 && !button_A1){
+			}else if ((!button_A0) && (!button_A1)){
 				Counter_States = wait;
+			}else if ((button_A0) && (button_A1)){
+				Counter_States = Count_Reset;
 			}
 			break;
 		default:
@@ -74,7 +84,7 @@ void Counter_Tick(){
 			}
 			break;
 		case Count_Reset:
-			tempValue = 0;
+			tempValue = 0x00;
 			break;
 		case wait:
 			break;

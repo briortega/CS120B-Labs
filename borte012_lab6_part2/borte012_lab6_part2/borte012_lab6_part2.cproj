@@ -12,9 +12,9 @@
     <OutputFileName>$(MSBuildProjectName)</OutputFileName>
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <AssemblyName>borte012_lab5_part2</AssemblyName>
-    <Name>borte012_lab5_part2</Name>
-    <RootNamespace>borte012_lab5_part2</RootNamespace>
+    <AssemblyName>borte012_lab6_part2</AssemblyName>
+    <Name>borte012_lab6_part2</Name>
+    <RootNamespace>borte012_lab6_part2</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
@@ -44,18 +44,15 @@
     <avrtoolserialnumber />
     <avrdeviceexpectedsignature>0x1E9706</avrdeviceexpectedsignature>
     <com_atmel_avrdbg_tool_simulator>
-      <ToolOptions>
+      <ToolOptions xmlns="">
         <InterfaceProperties>
         </InterfaceProperties>
-        <InterfaceName>
-        </InterfaceName>
       </ToolOptions>
-      <ToolType>com.atmel.avrdbg.tool.simulator</ToolType>
-      <ToolNumber>
+      <ToolType xmlns="">com.atmel.avrdbg.tool.simulator</ToolType>
+      <ToolNumber xmlns="">
       </ToolNumber>
-      <ToolName>Simulator</ToolName>
+      <ToolName xmlns="">Simulator</ToolName>
     </com_atmel_avrdbg_tool_simulator>
-    <avrtoolinterface />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
