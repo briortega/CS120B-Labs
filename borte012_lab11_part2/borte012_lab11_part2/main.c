@@ -1,14 +1,15 @@
 /*
-  borte012_lab11_part1.c
+  borte012_lab11_part2.c
   Author : Briana
   Partner 1 Name & E-mail: Vincent Trejo vtrej003@ucr.edu
   Lab Section: 021
-  Assignment: Lab #11 Exercise #1
+  Assignment: Lab #11 Exercise #2
   Exercise Description:
 
   I acknowledge all content contained herein, excluding template or example
   code, is my own original work.
 */
+#include <avr/interrupt.h>
 #include <avr/io.h>
 #include "keypad.h"
 #include "scheduler.h"
@@ -16,73 +17,22 @@
 #include "bit.h"
 
 unsigned char tmpB = 0x00;
-
+const unsigned char message[38] = {'C','S','1','2','0','B',' ','i','s',' ','L','e','g','e','n','d','.','.','.',' ',
+	'w','a','i','t',' ','f','o','r',' ','i','t',' ','D','A','R','Y','!'};
+unsigned char cursorCounter = 1;
 enum SM_Task {SM_output};
 
 int SM_TaskTick(int state){
-	unsigned char x = 0;
-	x = GetKeypadKey();
-	
 	switch(state){
 		case SM_output:
-			switch(x){
-				case '\0':
-					tmpB = 0x1F;
-					break;
-				case '1':
-					tmpB = 0x01;
-					break;
-				case '2':
-					tmpB = 0x02;
-					break;
-				case '3':
-					tmpB = 0x03;
-					break;
-				case '4':
-					tmpB = 0x04;
-					break;
-				case '5':
-					tmpB = 0x05;
-					break;
-				case '6':
-					tmpB = 0x06;
-					break;
-				case '7':
-					tmpB = 0x07;
-					break;
-				case '8':
-					tmpB = 0x08;
-					break;
-				case '9':
-					tmpB = 0x09;
-					break;
-				case 'A':
-					tmpB = 0x0A;
-					break;
-				case 'B':
-					tmpB = 0x0B;
-					break;
-				case 'C':
-					tmpB = 0x0C;
-					break;
-				case 'D':
-					tmpB = 0x0D;
-					break;
-				case '*':
-					tmpB = 0x0E;
-					break;
-				case '0':
-					tmpB = 0x00;
-					break;
-				case '#':
-					tmpB = 0x0F;
-					break;
-				default:
-					tmpB = 0x1B;
-					break;
+			for (int i = 0; i <= 16; i++){
+				LCD_Cursor(i);
+				LCD_WriteData(message[cursorCounter + i - 2]);
+				if (cursorCounter + i + 1 == 40){
+					cursorCounter = 1;
+				}
 			}
-			state = SM_output;
-			PORTB = tmpB;
+			cursorCounter++;
 			break;
 	}
 	return state;
@@ -90,10 +40,10 @@ int SM_TaskTick(int state){
 
 int main(void)
 {
-    DDRA = 0xF0; PORTA = 0x0F; 
-	DDRB = 0xFF; PORTB = 0x00;
+	DDRC = 0xFF; PORTC = 0x00;
+	DDRD = 0xFF; PORTD = 0x00;
 	
-	unsigned long int SM_TaskTick_time = 20;
+	unsigned long int SM_TaskTick_time = 1000;
 	unsigned long int tmpGCD = 10;
 	unsigned long int GCD = tmpGCD;
 	unsigned long int SM_Task_period = SM_TaskTick_time/GCD;
@@ -109,6 +59,8 @@ int main(void)
 	
 	TimerSet(GCD);
 	TimerOn();
+	LCD_init();
+	LCD_ClearScreen();
 	
 	unsigned short i;
     while (1) {
